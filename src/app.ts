@@ -1,14 +1,16 @@
 import express, { Application, Request, Response } from 'express';
 import dotenv from 'dotenv';
+import authRoutes from './routes/auth.routes';
 
-// Load environment variables
 dotenv.config();
 
 const app: Application = express();
 const PORT = process.env.PORT || 3000;
 
-// Middleware to parse incoming JSON payloads
 app.use(express.json());
+
+// Auth Endpoints Router
+app.use('/api/auth', authRoutes);
 
 // Healthcheck Route
 app.get('/', (req: Request, res: Response) => {
@@ -19,7 +21,7 @@ app.get('/', (req: Request, res: Response) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Server is running on port http://localhost:${PORT}`);
+  console.log(`Server is running on http://localhost:${PORT}`);
 });
 
 export default app;
