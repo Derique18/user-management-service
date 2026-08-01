@@ -1,5 +1,7 @@
 import express, { Application, Request, Response } from 'express';
 import dotenv from 'dotenv';
+import swaggerUi from 'swagger-ui-express';
+import { swaggerSpec } from './config/swagger';
 import authRoutes from './routes/auth.routes';
 import userRoutes from './routes/user.routes';
 
@@ -10,7 +12,10 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 
-// Routes
+// API Documentation Route
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
+// Application Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 
@@ -24,6 +29,7 @@ app.get('/', (req: Request, res: Response) => {
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
+  console.log(`Swagger UI available at http://localhost:${PORT}/api-docs`);
 });
 
 export default app;
