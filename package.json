@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "tsx watch src/app.ts",
     "build": "tsc",
+    "dev": "tsc && nodemon dist/app.js",
     "start": "node dist/app.js"
   },
   "keywords": [],
@@ -30,8 +30,11 @@
     "@types/node": "^26.1.2",
     "@types/swagger-jsdoc": "^6.0.4",
     "@types/swagger-ui-express": "^4.1.8",
+    "nodemon": "^3.1.14",
     "prisma": "^7.9.1",
+    "ts-node": "^10.9.2",
     "ts-node-dev": "^2.0.0",
+    "tsc-watch": "^7.2.1",
     "tsx": "^4.23.1",
     "typescript": "^7.0.2"
   }
